@@ -1,17 +1,18 @@
 import React, { useState, useEffect } from "react";
 
-const Timer = () => {
-	const [timer, setTimer] = useState(70);
+const Timer = ({ isTyping, setIsTyping }) => {
+	const [timer, setTimer] = useState(30);
 
-	let minutes = Math.floor((timer / 60) % 60);
-	let seconds = timer % 60;
+	const minutes = Math.floor((timer / 60) % 60);
+	const seconds = timer % 60;
 
 	const setClock = (e) => {
 		setTimer(parseInt(e.target.value));
+		setIsTyping(false);
 	};
 
 	useEffect(() => {
-		while (timer > 0) {
+		while (isTyping && timer > 0) {
 			const interval = setInterval(() => {
 				setTimer((prevVal) => prevVal - 1);
 			}, 1000);
