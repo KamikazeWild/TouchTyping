@@ -3,6 +3,7 @@ import { useState } from "react";
 const Stage = () => {
 	let Strings = ["sf js sf js", "dsa las kas kjl"];
 	const [currentString, setCurrentString] = useState(Strings[0]);
+	const [status, setStatus] = useState("not-wrong");
 
 	const nextString = () => {
 		if (currentString === Strings[Strings.length - 1]) {
@@ -13,9 +14,18 @@ const Stage = () => {
 	};
 
 	const testString = (e) => {
-		if (e.target.value === currentString) {
+		const inputString = e.target.value;
+
+		if (inputString.length < currentString.length) {
+			setStatus("not-wrong");
+		} else if (
+			inputString.length >= currentString.length &&
+			inputString !== currentString
+		) {
+			setStatus("wrong");
+		} else if (inputString === currentString) {
 			nextString();
-			// e.target.value = "";
+			e.target.value = "";
 		}
 	};
 
@@ -25,7 +35,7 @@ const Stage = () => {
 			<div>
 				<input
 					type="text"
-					className="input-field"
+					className={`input-field ${status}`}
 					onChange={(e) => testString(e)}
 				/>
 			</div>
