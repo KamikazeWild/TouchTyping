@@ -1,8 +1,6 @@
-import React, { useState, useEffect } from "react";
+import React, { useEffect } from "react";
 
-const Timer = ({ isTyping, setIsTyping }) => {
-	const [timer, setTimer] = useState(30);
-
+const Timer = ({ isTyping, setIsTyping, timer, setTimer}) => {
 	const minutes = Math.floor((timer / 60) % 60);
 	const seconds = timer % 60;
 

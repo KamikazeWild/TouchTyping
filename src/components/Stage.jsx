@@ -1,67 +1,82 @@
-import { useEffect, useState } from "react";
+import {useEffect, useState} from "react";
 
-import { calculateAccuracy } from "../utils/StatLogic";
+import {calculateAccuracy, calculateNumberOfWords} from "../utils/StatLogic";
 
-const Stage = ({ setIsTyping }) => {
-	let Strings = ["sf js sf js", "dsa las kas kjl"];
-	const [currentString, setCurrentString] = useState(Strings[0]);
-	const [status, setStatus] = useState("not-wrong");
-	const [accuracy, setAccuracy] = useState(0);
-	const [allStringsShown, setAllStringsShown] = useState([Strings[0]]);
-	const [pastInputStrings, setPastInputStrings] = useState([]);
+const stringsToType = [
+	"Curabitur sit amet",
+	"Vestibulum dapibus mauris",
+	"Sed tristique, purus",
+	"Vestibulum ante ipsum",
+	"Donec quis est",
+	"Maecenas cursus, mauris",
+	"Aliquam erat volutpat",
+	"Donec in pellentesque",
+	"Nulla eget purus",
+	"Mauris eget massa",
+	"Donec vehicula quam",
+	"Cras egestas magna",
+	"Suspendisse semper nulla",
+	"Praesent vitae risus",
+	"Vivamus vitae dolor",
+	"Aliquam eget eros",
+	"Morbi ac convallis",
+	"Proin quis nisl",
+	"Fusce ornare nulla",
+	"Maecenas sodales metus"
+];
 
-	const nextString = () => {
-		if (currentString === Strings[Strings.length - 1]) {
-			setCurrentString(Strings[0]);
-		} else {
-			setCurrentString(Strings[Strings.indexOf(currentString) + 1]);
-		}
-	};
 
-	const testString = (e) => {
-		setIsTyping(true);
+const Stage = ({ setIsTyping, timer }) => {
+  const [currentInputString, setCurrentInputString] = useState('');
+  const [currentStringIndex, setCurrentStringIndex] = useState(0);
+  const [allInputStrings, setAllInputStrings] = useState([]);
+  const [statistics, setStatistics] = useState({ accuracy: 0, correctWords: 0, totalWords: 0 });
 
-		const inputString = e.target.value;
+  const currentString = stringsToType[currentStringIndex];
 
-		if (inputString.length === currentString.length) {
-			nextString();
-			const newAllStringsShown = [...allStringsShown, currentString];
-			if (newAllStringsShown[0] === newAllStringsShown[1]) {
-				newAllStringsShown.shift();
-			}
-			setAllStringsShown(newAllStringsShown);
-			console.log(allStringsShown);
+  const handleKeyDown = (event) => {
+    setIsTyping(true);
+    if (event.keyCode === 32 || event.which === 32) {
+      computeAccuracy();
+    }
+  };
 
-			const newPastInputStrings = [...pastInputStrings, inputString];
-			setPastInputStrings(newPastInputStrings);
-			e.target.value = "";
-		}
-	};
+  const resetInputValue = () => setCurrentInputString('');
 
-	const handleKeyDown = (event) => {
-		if (event.keyCode === 32 || event.which === 32) {
-			console.log("Space bar pressed");
-			const inputString = event.target.value;
-			setAccuracy(
-				calculateAccuracy(allStringsShown, [...pastInputStrings, inputString])
-			);
-		}
-	};
+  const computeAccuracy = () => {
+    const inputStrings = currentInputString.trim() !== '' ? [...allInputStrings, currentInputString.trim()] : allInputStrings;
+    const stats = calculateAccuracy(stringsToType.slice(0, currentStringIndex+1), inputStrings);
+    setStatistics(stats);
+  };
 
-	return (
-		<div>
-			<h1>{currentString}</h1>
-			<div>
-				<input
-					type="text"
-					className={`input-field ${status}`}
-					onChange={(e) => testString(e)}
-					onKeyDown={handleKeyDown}
-				/>
-			</div>
-			<p>Accuracy: {accuracy}</p>
-		</div>
-	);
+  useEffect(() => {
+    // Check if the number of words and characters in the current input string matches that of the current string.
+    if (calculateNumberOfWords(currentInputString) === calculateNumberOfWords(currentString) && currentInputString.length === currentString.length) {
+      setAllInputStrings(prevStrings => [...prevStrings, currentInputString.trim()]);
+      resetInputValue();
+      setCurrentStringIndex((index) => (index + 1) % stringsToType.length);
+    }
+  }, [currentInputString]);
+
+  useEffect(() => {
+    computeAccuracy();
+  }, [currentStringIndex]);
+
+  return (
+    <div>
+      <h1>{currentString}</h1>
+      <div>
+        <input
+          value={currentInputString}
+          type="text"
+          onChange={(e) => setCurrentInputString(e.target.value)}
+          onKeyDown={handleKeyDown}
+          disabled={timer === 0}
+        />
+      </div>
+      <p>Accuracy: {statistics.accuracy.toFixed(2)}, Correct Words: {statistics.correctWords}, Total Words: {statistics.totalWords}</p>
+    </div>
+  );
 };
 
 export default Stage;
