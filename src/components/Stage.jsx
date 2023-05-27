@@ -9,7 +9,7 @@ import { StyledInput, StyledStage, StyledWord } from "../styles";
 import { stringsToType } from "../constants";
 
 const Stage = ({ setIsTyping, timer, setStatistics }) => {
-    console.log({ timer });
+    // console.log({ timer });
     const [currentInputString, setCurrentInputString] = useState("");
     const [currentStringIndex, setCurrentStringIndex] = useState(0);
     const [allInputStrings, setAllInputStrings] = useState([]);

@@ -1,5 +1,5 @@
 function calculateAccuracy(allStringsShown, allInputStrings) {
-  console.log({allStringsShown, allInputStrings})
+  // console.log({allStringsShown, allInputStrings})
   if(allStringsShown.length === 0 || allInputStrings.length === 0){
     return { accuracy: 0, correctWords: 0, totalWords: 0 }
   }
@@ -27,8 +27,8 @@ function calculateAccuracy(allStringsShown, allInputStrings) {
 const calculateNumberOfWords = (string) => string?.trim().split(" ").length || 0
 
 function calculateWordsPerMinute(totalWords, elapsedTimeInSec) {
-  console.log({totalWords, elapsedTimeInSec})
   // Convert the elapsed time from seconds to minutes
+  // console.log({totalWords, elapsedTimeInSec})
   if(!totalWords || !elapsedTimeInSec){
     return 0
   }
