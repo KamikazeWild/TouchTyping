@@ -56,14 +56,17 @@ const Stage = ({ setIsTyping, timer, setStatistics }) => {
 			resetInputValue();
 			setCurrentStringIndex((index) => (index + 1) % stringsToType.length);
 		}
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentInputString]);
 
 	useEffect(() => {
 		computeAccuracy();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [currentStringIndex]);
 
 	useEffect(() => {
 		computeAccuracy();
+		// eslint-disable-next-line react-hooks/exhaustive-deps
 	}, [timer.remainingTime]);
 
 	return (
