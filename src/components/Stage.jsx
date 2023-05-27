@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
 import {calculateAccuracy, calculateNumberOfWords, calculateWordsPerMinute} from "../utils/StatLogic";
-import {StyledInput, StyledStage} from "../styles";
+import {StyledInput, StyledStage, StyledWord} from "../styles";
 import {stringsToType} from "../constants";
 
 
@@ -45,7 +45,9 @@ const Stage = ({ setIsTyping, timer, setStatistics }) => {
 
     return (
         <StyledStage>
-            <h1>{currentString}</h1>
+            <h1>{currentString.split(" ").map((word, index) =>
+                <StyledWord alternate={index % 2 === 0}>{word}</StyledWord>
+            )}</h1>
             <StyledInput
                 value={currentInputString}
                 type="text"
