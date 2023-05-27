@@ -1,6 +1,7 @@
 import React, { useEffect } from "react";
+import {StyledSelect, StyledTime, StyledTimer} from "../styles";
 
-const Timer = ({ isTyping, setIsTyping, timer, setTimer}) => {
+const Timer = ({ isTyping, setIsTyping, timer, setTimer, children}) => {
 	const minutes = Math.floor((timer / 60) % 60);
 	const seconds = timer % 60;
 
@@ -22,16 +23,17 @@ const Timer = ({ isTyping, setIsTyping, timer, setTimer}) => {
 	});
 
 	return (
-		<div className="App">
+		<StyledTimer>
+			{children}
 			<h2>Time remaining</h2>
-			<select name="time" onChange={(e) => setClock(e)}>
+			<StyledSelect  name="time" onChange={(e) => setClock(e)}>
 				<option value="30">30 seconds</option>
 				<option value="60">1 minute</option>
 				<option value="120">2 minutes</option>
 				<option value="300">5 minutes</option>
-			</select>
-			<h3>{"0" + minutes + ":" + (seconds >= 10 ? seconds : "0" + seconds)}</h3>
-		</div>
+			</StyledSelect>
+			<StyledTime>{"0" + minutes + ":" + (seconds >= 10 ? seconds : "0" + seconds)}</StyledTime>
+		</StyledTimer>
 	);
 };
 
