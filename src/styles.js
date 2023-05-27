@@ -75,9 +75,30 @@ const StyledTime = styled.h3`
 	display: flex;
 	align-items: center;
 	margin-top: 20px;
+	margin-bottom: 10px;
 	font-size: 20px;
 	color: #333;
 `;
+
+const StyledButton = styled.button`
+  padding: 0.3em 0.75em;
+  font-size: 16px;
+  background-color: #3f51b5;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+
+  &:hover {
+    background-color: #2d3d9e;
+  	box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.3);
+  }
+
+  &:active {
+    background-color: #1e2773;
+    box-shadow: 0px -1px 1px rgba(0, 0, 0, 0.3);
+  }
+`
 
 const StyledApp = styled.div`
 	text-align: center;
@@ -122,6 +143,7 @@ export {
 	StyledStatBox,
 	StyledStat,
 	StyledTimer,
+	StyledButton,
 	StyledApp,
 	StyledHeading,
 	ContentContainer,
