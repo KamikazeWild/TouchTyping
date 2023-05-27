@@ -1,6 +1,17 @@
 import styled from 'styled-components';
 
 // Styles
+const TestBox = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  background-color: #dce8fc;
+  padding: 1em;
+  margin-top: 2em;
+  border-radius: 10px;
+`;
+
+
 const StyledStage = styled.div`
   display: flex;
   flex-direction: column;
@@ -92,4 +103,4 @@ const IconWrapper = styled.span`
   margin-right: 0.75rem;
 `;
 
-export {StyledStage, StyledTime, StyledSelect, StyledInput, StyledStatBox, StyledTimer, StyledApp, StyledHeading, ContentContainer, IconWrapper, StyledStat}
+export {StyledStage, TestBox, StyledTime, StyledSelect, StyledInput, StyledStatBox, StyledTimer, StyledApp, StyledHeading, ContentContainer, IconWrapper, StyledStat}

@@ -26,4 +26,19 @@ function calculateAccuracy(allStringsShown, allInputStrings) {
 
 const calculateNumberOfWords = (string) => string?.trim().split(" ").length || 0
 
-export { calculateAccuracy, calculateNumberOfWords };
+function calculateWordsPerMinute(totalWords, elapsedTimeInSec) {
+  console.log({totalWords, elapsedTimeInSec})
+  // Convert the elapsed time from seconds to minutes
+  if(!totalWords || !elapsedTimeInSec){
+    return 0
+  }
+  const elapsedTimeInMin = elapsedTimeInSec / 60;
+
+  // Calculate words per minute
+  const wordsPerMin = totalWords / elapsedTimeInMin;
+
+  // Return the result
+  return wordsPerMin;
+}
+
+export { calculateAccuracy, calculateNumberOfWords, calculateWordsPerMinute };

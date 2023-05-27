@@ -1,19 +1,22 @@
 import React, { useEffect } from "react";
 import {StyledSelect, StyledTime, StyledTimer} from "../styles";
 
-const Timer = ({ isTyping, setIsTyping, timer, setTimer, children}) => {
-	const minutes = Math.floor((timer / 60) % 60);
-	const seconds = timer % 60;
+const Timer = ({ isTyping, setIsTyping, timer: {elapsedTime, remainingTime}, setTimer, children}) => {
+	const minutes = Math.floor((remainingTime / 60) % 60);
+	const seconds = remainingTime % 60;
 
 	const setClock = (e) => {
-		setTimer(parseInt(e.target.value));
+		setTimer({ remainingTime: parseInt(e.target.value), elapsedTime: 0 });
 		setIsTyping(false);
 	};
 
 	useEffect(() => {
-		while (isTyping && timer > 0) {
+		while (isTyping && remainingTime > 0) {
 			const interval = setInterval(() => {
-				setTimer((prevVal) => prevVal - 1);
+				setTimer((prevVal) => ({
+					remainingTime: prevVal.remainingTime - 1,
+					elapsedTime: prevVal.elapsedTime + 1
+				}));
 			}, 1000);
 
 			return () => {
