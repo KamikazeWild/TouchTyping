@@ -2,15 +2,22 @@ import styled from 'styled-components';
 
 // Styles
 const TestBox = styled.div`
-  display: flex;
+ display: flex;
+  flex-direction: row; // Change this to row for horizontal layout
   align-items: center;
-  justify-content: space-around;
+  justify-content: center;
   background-color: #dce8fc;
   padding: 1em;
-  margin-top: 2em;
-  border-radius: 10px;
+  gap: 3rem; // Increase this to increase the space between the Timer and Stage
 `;
 
+const StyledWord = styled.span`
+  color: ${props => props.alternate ? '#f00' : '#00f'}; // change colors as needed
+  margin-right: 0.5em;
+  display: inline-block; // makes sure all words are in the same line
+  font-size: 24px; // change as needed for larger text size
+  white-space: nowrap; // prevent breaking the line in the middle of the word
+`;
 
 const StyledStage = styled.div`
   display: flex;
@@ -103,4 +110,4 @@ const IconWrapper = styled.span`
   margin-right: 0.75rem;
 `;
 
-export {StyledStage, TestBox, StyledTime, StyledSelect, StyledInput, StyledStatBox, StyledTimer, StyledApp, StyledHeading, ContentContainer, IconWrapper, StyledStat}
+export {StyledStage, StyledWord, TestBox, StyledTime, StyledSelect, StyledInput, StyledStatBox, StyledTimer, StyledApp, StyledHeading, ContentContainer, IconWrapper, StyledStat}
