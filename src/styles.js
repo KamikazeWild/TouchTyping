@@ -21,13 +21,18 @@ const StyledInput = styled.input`
   }
 `;
 
-const StyledStat = styled.p`
+const StyledStatBox = styled.p`
   display: flex;
   align-items:center;
   margin-top: 20px;
+  font-weight: bold;
   font-size: 18px;
   color: #333;
 `;
+
+const StyledStat = styled.div`
+  margin-right:1em
+`
 
 const StyledTimer = styled.div`
   display: flex;
@@ -75,7 +80,7 @@ const StyledHeading = styled.h1`
 const ContentContainer = styled.div`
   display: flex;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   width: 100%;
   max-width: 800px;
   padding: 1rem;
@@ -84,7 +89,7 @@ const ContentContainer = styled.div`
 
 const IconWrapper = styled.span`
   color: #3f51b5; // dark blue color
-  margin-right: 0.5rem;
+  margin-right: 0.75rem;
 `;
 
-export {StyledStage, StyledTime, StyledSelect, StyledInput, StyledStat, StyledTimer, StyledApp, StyledHeading, ContentContainer, IconWrapper}
+export {StyledStage, StyledTime, StyledSelect, StyledInput, StyledStatBox, StyledTimer, StyledApp, StyledHeading, ContentContainer, IconWrapper, StyledStat}

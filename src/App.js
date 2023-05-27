@@ -1,4 +1,3 @@
-import styled from 'styled-components';
 import { FaRegClock } from 'react-icons/fa';
 import { BiTask } from 'react-icons/bi';
 import { useState } from "react";
@@ -7,9 +6,6 @@ import Stage from "./components/Stage";
 import Timer from "./components/Timer";
 
 import {StyledApp, StyledHeading, ContentContainer, IconWrapper } from "./styles"
-
-
-
 
 function App() {
 	const [isTyping, setIsTyping] = useState(false);

@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
 import {calculateAccuracy, calculateNumberOfWords} from "../utils/StatLogic";
-import {StyledInput, StyledStage, StyledStat} from "../styles";
+import {StyledInput, StyledStage, StyledStatBox, StyledStat} from "../styles";
 
 const stringsToType = [
     "Curabitur sit amet",
@@ -73,7 +73,13 @@ const Stage = ({ setIsTyping, timer, children }) => {
                 onKeyDown={handleKeyDown}
                 disabled={timer === 0}
             />
-            <StyledStat> {children} Accuracy: {statistics.accuracy.toFixed(2)}, Correct Words: {statistics.correctWords}, Total Words: {statistics.totalWords}</StyledStat>
+            <StyledStatBox>
+                {children}
+                <StyledStat>Accuracy: {statistics.accuracy.toFixed(2)}</StyledStat>
+                <StyledStat> Correct Words: {statistics.correctWords}</StyledStat>
+                <StyledStat>Total Words: {statistics.totalWords}</StyledStat>
+                {/*{timer === 0 ? <StyledStat>Correct WPM: {statistics.correctWordsPerMinute}</StyledStat> : null}*/}
+            </StyledStatBox>
         </StyledStage>
     );
 };
