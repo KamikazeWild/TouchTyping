@@ -1,62 +1,89 @@
-import {useEffect, useState} from "react";
+import { useEffect, useState } from "react";
 
-import {calculateAccuracy, calculateNumberOfWords, calculateWordsPerMinute} from "../utils/StatLogic";
-import {StyledInput, StyledStage, StyledWord} from "../styles";
-import {stringsToType} from "../constants";
-
+import {
+	calculateAccuracy,
+	calculateNumberOfWords,
+	calculateWordsPerMinute,
+} from "../utils/StatLogic";
+import { StyledInput, StyledStage, StyledWord } from "../styles";
+import { stringsToType } from "../constants";
 
 const Stage = ({ setIsTyping, timer, setStatistics }) => {
-    console.log({timer})
-    const [currentInputString, setCurrentInputString] = useState('');
-    const [currentStringIndex, setCurrentStringIndex] = useState(0);
-    const [allInputStrings, setAllInputStrings] = useState([]);
+	console.log({ timer });
+	const [currentInputString, setCurrentInputString] = useState("");
+	const [currentStringIndex, setCurrentStringIndex] = useState(0);
+	const [allInputStrings, setAllInputStrings] = useState([]);
 
-    const currentString = stringsToType[currentStringIndex];
+	const currentString = stringsToType[currentStringIndex];
 
-    const handleKeyDown = (event) => {
-        setIsTyping(true);
-    };
+	const handleKeyDown = (event) => {
+		setIsTyping(true);
+	};
 
-    const resetInputValue = () => setCurrentInputString('');
+	const handlePaste = (e) => {
+		e.preventDefault();
+	};
 
-    const computeAccuracy = () => {
-        const inputStrings = currentInputString.trim() !== '' ? [...allInputStrings, currentInputString.trim()] : allInputStrings;
-        const stats = calculateAccuracy(stringsToType.slice(0, currentStringIndex+1), inputStrings);
-        const wordsPerMinute = calculateWordsPerMinute(stats.totalWords, timer.elapsedTime)
-        setStatistics({...stats, wordsPerMinute});
-    };
+	const resetInputValue = () => setCurrentInputString("");
 
-    useEffect(() => {
-        // Check if the number of words and characters in the current input string matches that of the current string.
-        if (calculateNumberOfWords(currentInputString) === calculateNumberOfWords(currentString) && currentInputString.length === currentString.length) {
-            setAllInputStrings(prevStrings => [...prevStrings, currentInputString.trim()]);
-            resetInputValue();
-            setCurrentStringIndex((index) => (index + 1) % stringsToType.length);
-        }
-    }, [currentInputString]);
+	const computeAccuracy = () => {
+		const inputStrings =
+			currentInputString.trim() !== ""
+				? [...allInputStrings, currentInputString.trim()]
+				: allInputStrings;
+		const stats = calculateAccuracy(
+			stringsToType.slice(0, currentStringIndex + 1),
+			inputStrings
+		);
+		const wordsPerMinute = calculateWordsPerMinute(
+			stats.totalWords,
+			timer.elapsedTime
+		);
+		setStatistics({ ...stats, wordsPerMinute });
+	};
 
-    useEffect(() => {
-        computeAccuracy();
-    }, [currentStringIndex]);
+	useEffect(() => {
+		// Check if the number of words and characters in the current input string matches that of the current string.
+		if (
+			calculateNumberOfWords(currentInputString) ===
+				calculateNumberOfWords(currentString) &&
+			currentInputString.length === currentString.length
+		) {
+			setAllInputStrings((prevStrings) => [
+				...prevStrings,
+				currentInputString.trim(),
+			]);
+			resetInputValue();
+			setCurrentStringIndex((index) => (index + 1) % stringsToType.length);
+		}
+	}, [currentInputString]);
 
-    useEffect(() => {
-        computeAccuracy()
-    }, [timer.remainingTime])
+	useEffect(() => {
+		computeAccuracy();
+	}, [currentStringIndex]);
 
-    return (
-        <StyledStage>
-            <h1>{currentString.split(" ").map((word, index) =>
-                <StyledWord alternate={index % 2 === 0}>{word}</StyledWord>
-            )}</h1>
-            <StyledInput
-                value={currentInputString}
-                type="text"
-                onChange={(e) => setCurrentInputString(e.target.value)}
-                onKeyDown={handleKeyDown}
-                disabled={timer.remainingTime === 0}
-            />
-        </StyledStage>
-    );
+	useEffect(() => {
+		computeAccuracy();
+	}, [timer.remainingTime]);
+
+	return (
+		<StyledStage>
+			<h1>
+				{currentString.split(" ").map((word, index) => (
+					<StyledWord alternate={index % 2 === 0}>{word}</StyledWord>
+				))}
+			</h1>
+			<StyledInput
+				value={currentInputString}
+				type="text"
+				placeholder="Begin typing to start timer..."
+				onChange={(e) => setCurrentInputString(e.target.value)}
+				onKeyDown={handleKeyDown}
+				disabled={timer.remainingTime === 0}
+				onPaste={handlePaste}
+			/>
+		</StyledStage>
+	);
 };
 
 export default Stage;

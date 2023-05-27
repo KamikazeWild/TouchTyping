@@ -12,10 +12,12 @@ const TestBox = styled.div`
 `;
 
 const StyledWord = styled.span`
-  color: ${props => props.alternate ? '#f00' : '#00f'}; // change colors as needed
+  color: ${props => props.alternate ? '#da3131' : '#5959fa'}; // change colors as needed
+  background-color: #c8daf7;
+  padding: 0.25em 0.5em;
   margin-right: 0.5em;
   display: inline-block; // makes sure all words are in the same line
-  font-size: 24px; // change as needed for larger text size
+  font-size: 30px; // change as needed for larger text size
   white-space: nowrap; // prevent breaking the line in the middle of the word
 `;
 
@@ -31,11 +33,11 @@ const StyledStage = styled.div`
 const StyledInput = styled.input`
   margin-top: 20px;
   padding: 10px;
-  font-size: 16px;
+  font-size: 24px;
   border: 1px solid #ddd;
   border-radius: 4px;
   &:disabled {
-    background-color: #eee;
+    background-color: #c8daf7;
   }
 `;
 
