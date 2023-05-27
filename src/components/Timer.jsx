@@ -27,7 +27,7 @@ const Timer = ({ isTyping, setIsTyping, timer: {elapsedTime, remainingTime}, set
 
 	return (
 		<StyledTimer>
-			<h2>Time remaining</h2>
+			<h2>Time Duration</h2>
 			<StyledSelect  name="time" onChange={(e) => setClock(e)}>
 				<option value="30">30 seconds</option>
 				<option value="60">1 minute</option>
