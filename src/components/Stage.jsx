@@ -1,7 +1,7 @@
 import {useEffect, useState} from "react";
 
 import {calculateAccuracy, calculateNumberOfWords, calculateWordsPerMinute} from "../utils/StatLogic";
-import {StyledInput, StyledStage, StyledStatBox, StyledStat} from "../styles";
+import {StyledInput, StyledStage} from "../styles";
 import {stringsToType} from "../constants";
 
 
