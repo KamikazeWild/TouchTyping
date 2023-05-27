@@ -24,7 +24,6 @@ const Timer = ({ isTyping, setIsTyping, timer, setTimer, children}) => {
 
 	return (
 		<StyledTimer>
-			{children}
 			<h2>Time remaining</h2>
 			<StyledSelect  name="time" onChange={(e) => setClock(e)}>
 				<option value="30">30 seconds</option>
@@ -32,7 +31,7 @@ const Timer = ({ isTyping, setIsTyping, timer, setTimer, children}) => {
 				<option value="120">2 minutes</option>
 				<option value="300">5 minutes</option>
 			</StyledSelect>
-			<StyledTime>{"0" + minutes + ":" + (seconds >= 10 ? seconds : "0" + seconds)}</StyledTime>
+			<StyledTime>{children} {"0" + minutes + ":" + (seconds >= 10 ? seconds : "0" + seconds)}</StyledTime>
 		</StyledTimer>
 	);
 };

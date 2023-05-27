@@ -6,38 +6,9 @@ import { useState } from "react";
 import Stage from "./components/Stage";
 import Timer from "./components/Timer";
 
-const StyledApp = styled.div`
-  text-align: center;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: flex-start;
-  height: 100vh;
-  padding-top: 2rem;
-  background-color: #e8f0fe; // pleasant light blue color
-  box-sizing: border-box;
-`;
+import {StyledApp, StyledHeading, ContentContainer, IconWrapper } from "./styles"
 
-const StyledHeading = styled.h1`
-  font-size: 2.5rem;
-  color: #3f51b5; // dark blue color
-  margin-bottom: 1.5rem;
-`;
 
-const ContentContainer = styled.div`
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  width: 100%;
-  max-width: 800px;
-  padding: 1rem;
-  gap: 2rem;
-`;
-
-const IconWrapper = styled.span`
-  color: #3f51b5; // dark blue color
-  margin-right: 0.5rem;
-`;
 
 
 function App() {
