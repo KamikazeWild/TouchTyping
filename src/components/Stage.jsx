@@ -4,26 +4,26 @@ import {calculateAccuracy, calculateNumberOfWords} from "../utils/StatLogic";
 import {StyledInput, StyledStage, StyledStatBox, StyledStat} from "../styles";
 
 const stringsToType = [
-    "Curabitur sit amet",
-    "Vestibulum dapibus mauris",
-    "Sed tristique, purus",
-    "Vestibulum ante ipsum",
-    "Donec quis est",
-    "Maecenas cursus, mauris",
-    "Aliquam erat volutpat",
-    "Donec in pellentesque",
-    "Nulla eget purus",
-    "Mauris eget massa",
-    "Donec vehicula quam",
-    "Cras egestas magna",
-    "Suspendisse semper nulla",
-    "Praesent vitae risus",
-    "Vivamus vitae dolor",
-    "Aliquam eget eros",
-    "Morbi ac convallis",
-    "Proin quis nisl",
-    "Fusce ornare nulla",
-    "Maecenas sodales metus"
+  "asd fjk l;",
+  "asdf j; kl",
+  "asd f; jkl",
+  "as; djk l",
+  "asd; fj k",
+  "as d fjk;",
+  "as;df jkl",
+  "asd jkl; f",
+  "as df j; kl",
+  "a; sdfj kl",
+  "a;dfj kls",
+  "as; dj fkl",
+  "as; dfj kl",
+  "asdf klj;",
+  "as; fj kl",
+  "asdfj ;kl",
+  "asd jkl; f",
+  "asf ; jkl",
+  "asdf ;jkl",
+  "asd fkl; j"
 ];
 
 
