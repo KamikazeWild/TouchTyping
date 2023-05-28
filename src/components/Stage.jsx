@@ -13,7 +13,6 @@ const Stage = ({ setIsTyping, timer, setStatistics }) => {
     const [currentInputString, setCurrentInputString] = useState("");
     const [currentStringIndex, setCurrentStringIndex] = useState(0);
     const [allInputStrings, setAllInputStrings] = useState([]);
-    const [allStringsShown, setAllStringsShown] = useState([])
 
     const currentString = stringsToType[currentStringIndex];
 
@@ -33,13 +32,8 @@ const Stage = ({ setIsTyping, timer, setStatistics }) => {
                 ? [...allInputStrings, currentInputString.trim()]
                 : allInputStrings;
 
-        setAllStringsShown(prevStrings => [
-            ...prevStrings,
-            stringsToType[currentStringIndex]
-        ])
-
         const stats = calculateAccuracy(
-            allStringsShown,
+            stringsToType.slice(0, currentStringIndex + 1),
             inputStrings
         );
         const wordsPerMinute = calculateWordsPerMinute(
